@@ -1,0 +1,312 @@
+{
+    "patches": [
+        {
+            "label": "2024-12-12_00-51-52",
+            "content": "@@ -63,594 +63,8 @@\n p%22%0A%0A\n-class Pessoa %7B%0Aprivate:%0A    std::string nome;%0A    int dinheiro;%0A%0Apublic:%0A    Pessoa(std::string nome, int dinheiro) : nome(nome), dinheiro(dinheiro) %7B%7D%0A%0A    std::string getNome() const %7B%0A        return nome;%0A    %7D%0A%0A    int getDinheiro() const %7B%0A        return dinheiro;%0A    %7D%0A%0A    void pagar(int valor) %7B%0A        if (dinheiro %3E= valor) %7B%0A            dinheiro -= valor;%0A        %7D else %7B%0A            dinheiro = 0;%0A        %7D%0A    %7D%0A%0A    void receber(int valor) %7B%0A        dinheiro += valor;%0A    %7D%0A%0A    std::string str() const %7B%0A        return nome + %22: %22 + std::to_string(dinheiro);%0A    %7D%0A%7D;\n %0Acla\n@@ -70,29 +70,18 @@\n ass Moto\n- \n %7B%0A\n-private:%0A \n    std::\n@@ -110,25 +110,24 @@\n sageiro;%0A   \n- \n std::shared_\n@@ -129,33 +129,32 @@\n ared_ptr%3CPessoa%3E\n- \n motorista;%0A    i\n@@ -151,17 +151,16 @@\n sta;%0A   \n- \n int cust\n@@ -158,25 +158,24 @@\n  int custo;%0A\n-%0A\n public:%0A    \n@@ -178,15 +178,15 @@\n     \n+ \n-Moto\n+Uber\n ()\n- \n : mo\n@@ -192,25 +192,25 @@\n otorista\n-(\n+%7B\n nullptr\n-)\n+%7D\n , passag\n@@ -217,32 +217,47 @@\n eiro\n-(\n+%7B\n nullptr\n-), custo(0) %7B\n+%7D%7B%0A        custo = 0;%0A     \n %7D%0A%0A\n+ \n     \n@@ -308,17 +308,16 @@\n torista)\n- \n %7B%0A      \n@@ -312,33 +312,32 @@\n sta)%7B%0A        if\n- \n (this-%3Emotorista\n@@ -340,33 +340,32 @@\n ista != nullptr)\n- \n %7B%0A            st\n@@ -475,27 +475,28 @@\n orista;%0A    \n+ \n %7D%0A\n-%0A\n+ \n     void set\n@@ -541,17 +541,16 @@\n sageiro)\n- \n %7B%0A      \n@@ -545,33 +545,32 @@\n iro)%7B%0A        if\n- \n (this-%3Emotorista\n@@ -562,33 +562,33 @@\n this-%3Emotorista \n-=\n+!\n = nullptr) %7B%0A   \n@@ -573,33 +573,32 @@\n ista != nullptr)\n- \n %7B%0A            st\n@@ -619,150 +619,14 @@\n il: \n-No d\n+D\n river\n-, no passenger%5Cn%22;%0A            return;%0A        %7D%0A        if (this-%3Epassageiro != nullptr) %7B%0A            std::cout %3C%3C %22fail: Passenger\n  is \n@@ -743,271 +743,75 @@\n     \n+ \n %7D\n-%0A\n %0A    \n-void drive(int distance) %7B%0A        if (this-%3Emotorista == nullptr %7C%7C this-%3Epassageiro == nullptr) %7B%0A            std::cout %3C%3C %22fail: Missing driver or passenger%5Cn%22;%0A            return;%0A        %7D%0A        this-%3Ecusto += distance;%0A    %7D%0A%0A    void leavePass() %7B\n+ std::string str()%7B%0A        std::string nome_motorista = %22%22;\n %0A   \n@@ -821,26 +821,24 @@\n   if\n- \n (this-%3E\n-passageiro\n+motorista\n  == \n@@ -864,51 +864,30 @@\n     \n-std::cout %3C%3C %22fail: No passenger to leave%5Cn\n+nome_motorista = %22Nome\n %22;%0A \n@@ -897,151 +897,112 @@\n     \n+%7D%0A\n     \n-return;%0A        %7D%0A        int pagamento = this-%3Ecusto;%0A        passageiro-%3Epagar(pagamento);%0A        motorista-%3Ereceber(pagamento);%0A       \n+    else %7B%0A            nome_motorista = this-%3Emotorista-%3Estr();%0A        %7D%0A        auto pass_name =\n  thi\n@@ -1015,16 +1015,17 @@\n sageiro \n+!\n = nullpt\n@@ -1039,441 +1039,180 @@\n     \n-this-%3Ecusto = 0;%0A    %7D%0A%0A    std::string str() const %7B%0A        std::string nome_motorista = (motorista == nullptr) ? %22None%22 : motorista-%3Estr();%0A        std::string nome_passageiro = (passageiro == nullptr) ? %22None%22 : passageiro-%3Estr();%0A        return %22Custo: %22 + std::to_string(custo) + %22, Motorista: %22 + nome_motorista + %22, Passageiro: %22 + nome_passageiro;%0A    %7D%0A%7D;%0Aclass Adapter %7B%0Aprivate:%0A    Moto moto;%0A%0Apublic:%0A    void setDriver\n+return fn::format(%22Const: %7B%7D, Driver: %7B%7D, Passenger: None%22, custo, motorista, )%0A     %7D%0A%7D;%0Aclass Adapter %7B%0A    Uber uber;%0Apublic:%0A    Adapter() %7B%0A    %7D%0A    void setMotorista\n (std\n@@ -1243,28 +1243,28 @@\n ) %7B%0A        \n-moto\n+uber\n .setMotorist\n@@ -1303,33 +1303,32 @@\n  money));%0A    %7D%0A\n-%0A\n     void setPass\n@@ -1327,16 +1327,22 @@\n  setPass\n+ageiro\n (std::st\n@@ -1373,20 +1373,20 @@\n         \n-moto\n+uber\n .setPass\n@@ -1430,33 +1430,32 @@\n  money));%0A    %7D%0A\n-%0A\n     void drive(i\n@@ -1481,27 +1481,23 @@\n     \n-moto.drive(\n+(void) \n distance\n );%0A \n@@ -1492,25 +1492,24 @@\n distance\n-)\n ;%0A    %7D%0A\n %0A    voi\n@@ -1492,33 +1492,32 @@\n distance;%0A    %7D%0A\n-%0A\n     void leavePa\n@@ -1531,36 +1531,9 @@\n     \n-    moto.leavePass();%0A    %7D%0A\n+%7D\n %0A   \n@@ -1548,14 +1548,8 @@\n ow()\n- const\n  %7B%0A \n@@ -1594,17 +1594,21 @@\n ;%0A    %7D%0A\n-%7D\n+  %0A%7D;\n %0A%0Aint ma\n@@ -1752,16 +1752,41 @@\n e, ' ');\n+%0A        fn::write(line);\n %0A%0A      \n@@ -1786,24 +1786,29 @@\n %0A        if \n+     \n (args%5B0%5D == \n@@ -1817,30 +1817,49 @@\n nd%22)\n- %7B%0A \n        \n-   \n+%7B\n  break;\n-%0A\n+                          \n     \n@@ -1855,32 +1855,40 @@\n                %7D\n+%0A       \n  else if (args%5B0\n@@ -1902,36 +1902,24 @@\n etDriver%22) %7B\n-%0A           \n  adp.setDriv\n@@ -1930,34 +1930,25 @@\n rgs%5B1%5D, \n-std::stoi(\n++\n args%5B2%5D)\n );%0A     \n@@ -1935,36 +1935,41 @@\n %5D, +args%5B2%5D)\n-);%0A\n+;\n        \n- \n %7D\n+%0A       \n  else if (ar\n@@ -1984,37 +1984,27 @@\n  %22setPass%22) \n-%7B%0A         \n   \n+%7B\n  adp.setPass\n@@ -2017,26 +2017,17 @@\n 1%5D, \n-std::stoi(\n++\n args%5B2%5D)\n );%0A \n@@ -2022,19 +2022,18 @@\n args%5B2%5D)\n-);%0A\n+; \n         \n@@ -2025,32 +2025,40 @@\n s%5B2%5D);         %7D\n+%0A       \n  else if (args%5B0\n@@ -2071,29 +2071,21 @@\n drive%22) \n-%7B%0A       \n     \n+%7B\n  adp.dri\n@@ -2091,26 +2091,17 @@\n ive(\n-std::stoi(\n++\n args%5B1%5D)\n );%0A \n@@ -2096,27 +2096,31 @@\n args%5B1%5D)\n-);%0A\n+;      \n         \n %7D else i\n@@ -2103,33 +2103,47 @@\n );              \n-%7D\n+      %7D%0A       \n  else if (args%5B0\n@@ -2157,36 +2157,24 @@\n eavePass%22) %7B\n-%0A           \n  adp.leavePa\n@@ -2178,24 +2178,49 @@\n ePass();\n+                        %7D\n %0A       \n  %7D else \n@@ -2207,26 +2207,24 @@\n    %7D%0A       \n- %7D\n  else if (ar\n@@ -2239,30 +2239,23 @@\n  %22show%22)\n- %7B%0A  \n       \n-   \n+%7B\n  adp.sho\n@@ -2262,26 +2262,69 @@\n w();\n-%0A        %7D else %7B%0A\n+                             %7D%0A        else                  \n     \n@@ -2326,24 +2326,25 @@\n             \n+%7B\n  fn::write(%22\n@@ -2375,36 +2375,14 @@\n n%22);\n-%0A        %7D%0A    %7D%0A    return 0;\n+ %7D%0A    %7D\n %0A%7D\n"
+        },
+        {
+            "label": "2024-12-12_01-13-30",
+            "content": "@@ -2875,17 +2875,16 @@\n %0A    %7D%0A%7D\n-;\n %0A%0Aint ma\n"
+        },
+        {
+            "label": "2024-12-12_01-14-58",
+            "content": "@@ -827,34 +827,20 @@\n ptr)\n- %7B%0A        custo = 0;%0A    \n+, custo(0) %7B\n %7D%0A%0A \n"
+        },
+        {
+            "label": "2024-12-12_01-16-17",
+            "content": "@@ -696,25 +696,26 @@\n Pessoa%3E \n-motorista\n+passageiro\n ;%0A    st\n@@ -732,34 +732,33 @@\n ptr%3CPessoa%3E \n-passageiro\n+motorista\n ;%0A    int cu\n@@ -827,20 +827,34 @@\n ptr)\n-, custo(0) %7B\n+ %7B%0A        custo = 0;%0A    \n %7D%0A%0A \n"
+        },
+        {
+            "label": "2024-12-12_01-20-22",
+            "content": "@@ -2274,16 +2274,17 @@\n rn %22Cust\n+o\n : %22 + st\n@@ -2308,22 +2308,25 @@\n o) + %22, \n-Driver\n+Motorista\n : %22 + no\n@@ -2347,21 +2347,22 @@\n  %22, Pass\n-enger\n+ageiro\n : %22 + no\n"
+        },
+        {
+            "label": "2024-12-12_01-21-25",
+            "content": "@@ -2271,17 +2271,17 @@\n eturn %22C\n-o\n+u\n st: %22 + \n"
+        },
+        {
+            "label": "2024-12-12_01-21-34",
+            "content": "@@ -2276,19 +2276,16 @@\n  %22Cost: \n-%7B%7D,\n %22 + std:\n@@ -2309,16 +2309,18 @@\n  + %22\n+, \n Driver: \n %7B%7D,%22\n@@ -2311,27 +2311,24 @@\n  %22, Driver: \n-%7B%7D,\n %22 + nome_mot\n@@ -2337,16 +2337,18 @@\n ista + %22\n+, \n Passenge\n@@ -2354,11 +2354,8 @@\n er: \n-%7B%7D,\n %22 + \n"
+        },
+        {
+            "label": "2024-12-12_01-28-30",
+            "content": "@@ -2276,16 +2276,19 @@\n  %22Cost: \n+%7B%7D,\n %22 + std:\n@@ -2312,18 +2312,16 @@\n  + %22\n-, \n Driver: \n %22 + \n@@ -2312,24 +2312,27 @@\n  + %22Driver: \n+%7B%7D,\n %22 + nome_mot\n@@ -2341,18 +2341,16 @@\n ista + %22\n-, \n Passenge\n@@ -2352,16 +2352,19 @@\n senger: \n+%7B%7D,\n %22 + nome\n"
+        },
+        {
+            "label": "2024-12-12_01-28-56",
+            "content": "@@ -2275,16 +2275,17 @@\n n %22Cost:\n+ \n %22 + std:\n"
+        },
+        {
+            "label": "2024-12-12_01-29-06",
+            "content": "@@ -2305,16 +2305,17 @@\n to) + %22,\n+ \n Driver: \n"
+        },
+        {
+            "label": "2024-12-12_01-29-24",
+            "content": "@@ -2305,17 +2305,16 @@\n to) + %22,\n- \n Driver: \n"
+        },
+        {
+            "label": "2024-12-12_01-29-32",
+            "content": "@@ -2313,16 +2313,17 @@\n  Driver:\n+ \n %22 + nome\n@@ -2348,16 +2348,17 @@\n ssenger:\n+ \n %22 + nome\n"
+        },
+        {
+            "label": "2024-12-12_01-29-59",
+            "content": "@@ -2273,79 +2273,95 @@\n urn \n-fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, motoristaStr, \n+%22Cost:%22 + std::to_string(custo) + %22, Driver:%22 + nome_motorista + %22, Passenger:%22 + nome_\n pass\n@@ -2370,12 +2370,8 @@\n eiro\n-Str)\n ;%0A  \n"
+        },
+        {
+            "label": "2024-12-12_01-31-44",
+            "content": "@@ -2326,21 +2326,16 @@\n  custo, \n-nome_\n motorist\n@@ -2339,15 +2339,13 @@\n ista\n-, nome_\n+Str, \n pass\n@@ -2346,24 +2346,27 @@\n , passageiro\n+Str\n );%0A    %7D%0A%7D;%0A\n"
+        },
+        {
+            "label": "2024-12-12_01-33-49",
+            "content": "@@ -2042,19 +2042,339 @@\n ;%0A    %7D%0A\n+%0A\n    \n+ std::string str() const %7B%0A        std::string nome_motorista = (motorista == nullptr) ? %22None%22 : motorista-%3Estr();%0A        std::string nome_passageiro = (passageiro == nullptr) ? %22None%22 : passageiro-%3Estr();%0A        return fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, nome_motorista, nome_passageiro);%0A    %7D\n %0A%7D;%0Aclas\n@@ -2823,327 +2823,40 @@\n     \n- \n std::\n-string str() const %7B%0A        std::string nome_motorista = (motorista == nullptr) ? %22None%22 : motorista-%3Estr();%0A        std::string nome_passageiro = (passageiro == nullptr) ? %22None%22 : passageiro-%3Estr();%0A        return fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, nome_motorista, nome_passageiro);%0A    %7D\n+cout %3C%3C moto.str() %3C%3C %22%5Cn%22;\n %0A   \n"
+        },
+        {
+            "label": "2024-12-12_01-35-24",
+            "content": "@@ -2049,348 +2049,8 @@\n %0A   \n-void show()%7B%0A    std::string str() const %7B%0A        std::string nome_motorista = (motorista == nullptr) ? %22None%22 : motorista-%3Estr();%0A        std::string nome_passageiro = (passageiro == nullptr) ? %22None%22 : passageiro-%3Estr();%0A        return fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, nome_motorista, nome_passageiro);%0A    %7D%0A   %7D\n %0A%7D;%0A\n@@ -2503,40 +2503,327 @@\n     \n+ \n std::\n-cout %3C%3C moto.str() %3C%3C %22%5Cn%22;\n+string str() const %7B%0A        std::string nome_motorista = (motorista == nullptr) ? %22None%22 : motorista-%3Estr();%0A        std::string nome_passageiro = (passageiro == nullptr) ? %22None%22 : passageiro-%3Estr();%0A        return fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, nome_motorista, nome_passageiro);%0A    %7D\n %0A   \n"
+        },
+        {
+            "label": "2024-12-12_01-37-26",
+            "content": "@@ -2042,22 +2042,16 @@\n ;%0A    %7D%0A\n-      \n    void \n@@ -2062,53 +2062,8 @@\n ()%7B%0A\n-            std::cout %3C%3C moto.str();%0A        \n     \n@@ -2088,36 +2088,32 @@\n const %7B%0A        \n-    \n std::string moto\n@@ -2108,16 +2108,21 @@\n :string \n+nome_\n motorist\n@@ -2122,22 +2122,20 @@\n otorista\n-Str\n  = \n+(\n motorist\n@@ -2136,17 +2136,38 @@\n torista \n-?\n+== nullptr) ? %22None%22 :\n  motoris\n@@ -2171,39 +2171,26 @@\n rista-%3Estr()\n- : %22None%22;%0A    \n+;%0A\n         std:\n@@ -2197,16 +2197,21 @@\n :string \n+nome_\n passagei\n@@ -2216,14 +2216,12 @@\n eiro\n-Str\n  = \n+(\n pass\n@@ -2227,17 +2227,38 @@\n sageiro \n-?\n+== nullptr) ? %22None%22 :\n  passage\n@@ -2271,23 +2271,10 @@\n tr()\n- : %22None%22;%0A    \n+;%0A\n     \n@@ -2341,16 +2341,21 @@\n  custo, \n+nome_\n motorist\n@@ -2359,13 +2359,15 @@\n ista\n-Str, \n+, nome_\n pass\n@@ -2376,19 +2376,17 @@\n eiro\n-Str\n );%0A    \n- \n+%7D%0A\n    %7D\n@@ -2866,54 +2866,16 @@\n tr()\n-;%0A        std::cout %3C%3C moto.str() %3C%3C std::endl\n+ %3C%3C %22%5Cn%22\n ;%0A  \n"
+        },
+        {
+            "label": "2024-12-12_01-39-25",
+            "content": "@@ -2414,22 +2414,16 @@\n       %7D%0A\n-    %7D%0A\n %7D;%0Aclass\n"
+        },
+        {
+            "label": "2024-12-12_01-41-03",
+            "content": "@@ -12,17 +12,16 @@\n EMORY //\n- \n enable p\n@@ -44,26 +44,8 @@\n ptr%0A\n-#include %3Cmemory%3E%0A\n #inc\n@@ -642,25 +642,24 @@\n );%0A    %7D%0A%7D;%0A\n-%0A\n class Moto %7B\n@@ -2034,33 +2034,99 @@\n usto = 0;%0A    %7D%0A\n-%0A\n+         void show()%7B%0A            std::cout %3C%3C moto.str();%0A        \n     std::string \n@@ -2131,32 +2131,36 @@\n g str() const %7B%0A\n+    \n         std::str\n@@ -2209,32 +2209,36 @@\n str() : %22None%22;%0A\n+    \n         std::str\n@@ -2302,24 +2302,28 @@\n e%22;%0A        \n+    \n return fn::f\n@@ -2412,81 +2412,13 @@\n     \n-%7D%0A%0A\n     \n-void show() const %7B%0A        std::cout %3C%3C this-%3Estr() %3C%3C std::endl;\n+%7D\n %0A   \n@@ -2423,17 +2423,16 @@\n    %7D%0A%7D;%0A\n-%0A\n class Ad\n@@ -2491,22 +2491,16 @@\n tDriver(\n-const \n std::str\n@@ -2494,33 +2494,32 @@\n iver(std::string\n-&\n  name, int money\n@@ -2612,22 +2612,16 @@\n setPass(\n-const \n std::str\n@@ -2627,9 +2627,8 @@\n ring\n-&\n  nam\n@@ -2877,19 +2877,77 @@\n     \n-moto.show()\n+std::cout %3C%3C moto.str();%0A        std::cout %3C%3C moto.str() %3C%3C std::endl\n ;%0A  \n@@ -3677,10 +3677,9 @@\n turn 0;%0A\n+\n %7D\n-%0A\n"
+        },
+        {
+            "label": "2024-12-12_01-42-29",
+            "content": "@@ -63,46 +63,8 @@\n ry%3E%0A\n-#include %3Ciostream%3E%0A#include %3Cstring%3E%0A\n #inc\n@@ -625,16 +625,17 @@\n ome + %22:\n+ \n %22 + std:\n@@ -1999,102 +1999,8 @@\n o);%0A\n-        std::cout %3C%3C passageiro-%3EgetNome() %3C%3C %22:%22 %3C%3C passageiro-%3EgetDinheiro() %3C%3C %22 leave%5Cn%22;%0A\n     \n@@ -2263,90 +2263,78 @@\n urn \n-%22Cost: %22 + std::to_string(custo) + %22, Driver: %22 + motoristaStr + %22, Passenger: %22 +\n+fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, motoristaStr,\n  pas\n@@ -2343,16 +2343,17 @@\n geiroStr\n+)\n ;%0A    %7D%0A\n"
+        },
+        {
+            "label": "2024-12-12_01-44-34",
+            "content": "@@ -2394,78 +2394,90 @@\n urn \n-fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, motoristaStr,\n+%22Cost: %22 + std::to_string(custo) + %22, Driver: %22 + motoristaStr + %22, Passenger: %22 +\n  pas\n@@ -2486,17 +2486,16 @@\n geiroStr\n-)\n ;%0A    %7D%0A\n@@ -2551,16 +2551,29 @@\n s-%3Estr()\n+ %3C%3C std::endl\n ;%0A    %7D%0A\n"
+        },
+        {
+            "label": "2024-12-12_01-45-54",
+            "content": "@@ -2544,21 +2544,8 @@\n tr()\n- %3C%3C std::endl\n ;%0A  \n@@ -2999,16 +2999,22 @@\n d show()\n+ const\n  %7B%0A     \n"
+        },
+        {
+            "label": "2024-12-12_01-57-26",
+            "content": "@@ -2536,24 +2536,37 @@\n  this-%3Estr()\n+ %3C%3C std::endl\n ;%0A    %7D%0A%7D;%0A%0A\n@@ -3026,30 +3026,18 @@\n     \n- std::cout %3C%3C\n  moto.s\n-tr\n+how\n ();%0A\n"
+        },
+        {
+            "label": "2024-12-12_01-59-50",
+            "content": "@@ -2125,22 +2125,11 @@\n eave\n-%22 %3C%3C std::endl\n+%5Cn%22\n ;%0A  \n@@ -2544,21 +2544,8 @@\n tr()\n- %3C%3C std::endl\n ;%0A  \n@@ -3013,18 +3013,30 @@\n     \n+ std::cout %3C%3C\n  moto.s\n-how\n+tr\n ();%0A\n"
+        },
+        {
+            "label": "2024-12-12_02-03-12",
+            "content": "@@ -2405,90 +2405,78 @@\n urn \n-%22Cost: %22 + std::to_string(custo) + %22, Driver: %22 + motoristaStr + %22, Passenger: %22 +\n+fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, motoristaStr,\n  pas\n@@ -2485,16 +2485,17 @@\n geiroStr\n+)\n ;%0A    %7D%0A\n@@ -2555,63 +2555,22 @@\n tr()\n-; // Removendo o std::endl para evitar nova linha extra\n+ %3C%3C std::endl;\n %0A   \n@@ -3685,93 +3685,8 @@\n ();%0A\n-            std::cout %3C%3C std::endl; // Adicionando nova linha ap%C3%B3s a chamada de show%0A\n     \n"
+        },
+        {
+            "label": "2024-12-12_02-07-32",
+            "content": "@@ -3103,89 +3103,8 @@\n ();%0A\n-        std::cout %3C%3C std::endl; // Adicionando nova linha ap%C3%B3s a chamada de show%0A\n     \n@@ -3758,19 +3758,25 @@\n cout %3C%3C \n-%22$%22\n+std::endl\n ; // Adi\n@@ -3788,24 +3788,26 @@\n ndo \n-o prompt\n+nova linha\n  ap%C3%B3s a \n sa%C3%ADd\n@@ -3806,16 +3806,18 @@\n s a \n-sa%C3%AD\n+chama\n da d\n-o\n+e\n  sho\n"
+        },
+        {
+            "label": "2024-12-12_02-09-17",
+            "content": "@@ -2405,78 +2405,90 @@\n urn \n-fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, motoristaStr,\n+%22Cost: %22 + std::to_string(custo) + %22, Driver: %22 + motoristaStr + %22, Passenger: %22 +\n  pas\n@@ -2497,17 +2497,16 @@\n geiroStr\n-)\n ;%0A    %7D%0A\n@@ -2562,30 +2562,71 @@\n s-%3Estr()\n- %3C%3C std::endl;\n+; // Removendo o std::endl para evitar nova linha extra\n %0A    %7D%0A%7D\n@@ -3095,24 +3095,105 @@\n oto.show();%0A\n+        std::cout %3C%3C std::endl; // Adicionando nova linha ap%C3%B3s a chamada de show%0A\n     %7D%0A%7D;%0A%0Ain\n"
+        },
+        {
+            "label": "2024-12-12_02-12-04",
+            "content": "@@ -2117,27 +2117,38 @@\n ) %3C%3C %22 leave\n-%5Cn%22\n+%22 %3C%3C std::endl\n ;%0A        th\n@@ -2405,90 +2405,78 @@\n urn \n-%22Cost: %22 + std::to_string(custo) + %22, Driver: %22 + motoristaStr + %22, Passenger: %22 +\n+fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, motoristaStr,\n  pas\n@@ -2485,16 +2485,17 @@\n geiroStr\n+)\n ;%0A    %7D%0A\n@@ -2551,16 +2551,29 @@\n s-%3Estr()\n+ %3C%3C std::endl\n ;%0A    %7D%0A\n@@ -3051,35 +3051,8 @@\n ();%0A\n-        std::cout %3C%3C %22%5Cn%22;%0A\n     \n@@ -3246,84 +3246,8 @@\n ) %7B%0A\n-            std::cout %3C%3C %22$end%22 %3C%3C std::endl;  // Adicionando $end na sa%C3%ADda%0A\n     \n@@ -3677,24 +3677,99 @@\n adp.show();%0A\n+            std::cout %3C%3C %22$%22; // Adicionando o prompt ap%C3%B3s a sa%C3%ADda do show%0A\n         %7D el\n"
+        },
+        {
+            "label": "2024-12-12_02-13-08",
+            "content": "@@ -3059,227 +3059,100 @@\n  %3C%3C \n-std::endl;  // Garantindo que haja uma nova linha ap%C3%B3s a sa%C3%ADda do show%0A    %7D%0A%7D;%0A%0Aint main() %7B%0A    Adapter adp;%0A    while (true) %7B%0A        std::cout %3C%3C %22$%22;  // Garantindo que o prompt $ apare%C3%A7a no in%C3%ADcio de cada comando\n+%22%5Cn%22;%0A    %7D%0A%7D;%0A%0Aint main() %7B%0A    Adapter adp;%0A    while (true) %7B%0A        fn::write(%22$%22, %22%22);\n %0A   \n@@ -3310,53 +3310,33 @@\n  // \n-Garantindo que $end seja exibido corretamente\n+Adicionando $end na sa%C3%ADda\n %0A   \n@@ -3751,106 +3751,8 @@\n ) %7B%0A\n-            std::cout %3C%3C %22$show%22 %3C%3C std::endl;  // Garantindo que $show seja exibido corretamente%0A\n     \n"
+        },
+        {
+            "label": "2024-12-12_02-14-40",
+            "content": "@@ -3409,16 +3409,17 @@\n out %3C%3C %22\n+$\n end%22 %3C%3C \n@@ -3920,16 +3920,17 @@\n out %3C%3C %22\n+$\n show%22 %3C%3C\n"
+        },
+        {
+            "label": "2024-12-12_02-15-00",
+            "content": "@@ -3181,24 +3181,114 @@\n le (true) %7B%0A\n+        std::cout %3C%3C %22$%22;  // Garantindo que o prompt $ apare%C3%A7a no in%C3%ADcio de cada comando%0A\n         auto\n"
+        },
+        {
+            "label": "2024-12-12_02-16-04",
+            "content": "@@ -3189,98 +3189,8 @@\n ) %7B%0A\n-        std::cout %3C%3C %22$%22;  // Garantindo que o prompt $ apare%C3%A7a no in%C3%ADcio de cada comando%0A\n     \n"
+        },
+        {
+            "label": "2024-12-12_02-16-17",
+            "content": "@@ -2121,30 +2121,19 @@\n  %22 leave\n-%22 %3C%3C std::endl\n+%5Cn%22\n ;%0A      \n@@ -2394,78 +2394,90 @@\n urn \n-fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, motoristaStr,\n+%22Cost: %22 + std::to_string(custo) + %22, Driver: %22 + motoristaStr + %22, Passenger: %22 +\n  pas\n@@ -2486,17 +2486,16 @@\n geiroStr\n-)\n ;%0A    %7D%0A\n@@ -2556,62 +2556,8 @@\n r();\n- // Removendo o std::endl para evitar nova linha extra\n %0A   \n@@ -3409,17 +3409,16 @@\n out %3C%3C %22\n-$\n end%22 %3C%3C \n@@ -3919,17 +3919,16 @@\n out %3C%3C %22\n-$\n show%22 %3C%3C\n"
+        },
+        {
+            "label": "2024-12-12_02-18-53",
+            "content": "@@ -3463,16 +3463,17 @@\n out %3C%3C %22\n+$\n end%22 %3C%3C \n@@ -3974,16 +3974,17 @@\n out %3C%3C %22\n+$\n show%22 %3C%3C\n"
+        },
+        {
+            "label": "2024-12-12_02-19-13",
+            "content": "@@ -12,16 +12,17 @@\n EMORY //\n+ \n enable p\n@@ -41,16 +41,72 @@\n red_ptr%0A\n+#include %3Cmemory%3E%0A#include %3Ciostream%3E%0A#include %3Cstring%3E%0A\n #include\n@@ -124,20 +124,21 @@\n class Pe\n-rson\n+ssoa \n %7B%0Aprivat\n@@ -140,16 +140,17 @@\n rivate:%0A\n+ \n    std::\n@@ -161,26 +161,31 @@\n ng n\n-a\n+o\n me;%0A\n+ \n    int \n-money;\n+dinheiro;%0A\n %0Apub\n@@ -192,22 +192,23 @@\n lic:%0A   \n+ \n Pe\n-rson\n+ssoa\n (std::st\n@@ -209,33 +209,33 @@\n td::string n\n-a\n+o\n me, int \n money): name\n@@ -226,39 +226,675 @@\n int \n-money): name(name), money(money\n+dinheiro) : nome(nome), dinheiro(dinheiro) %7B%7D%0A%0A    std::string getNome() const %7B%0A        return nome;%0A    %7D%0A%0A    int getDinheiro() const %7B%0A        return dinheiro;%0A    %7D%0A%0A    void pagar(int valor) %7B%0A        if (dinheiro %3E= valor) %7B%0A            dinheiro -= valor;%0A        %7D else %7B%0A            dinheiro = 0;%0A        %7D%0A    %7D%0A%0A    void receber(int valor) %7B%0A        dinheiro += valor;%0A    %7D%0A%0A    std::string str() const %7B%0A        return nome + %22:%22 + std::to_string(dinheiro);%0A    %7D%0A%7D;%0A%0Aclass Moto %7B%0Aprivate:%0A    std::shared_ptr%3CPessoa%3E motorista;%0A    std::shared_ptr%3CPessoa%3E passageiro;%0A    int custo;%0A%0Apublic:%0A    Moto() : motorista(nullptr), passageiro(nullptr), custo(0\n ) %7B%7D\n@@ -902,110 +902,1316 @@\n %0A   \n-std::string getName()%7B%0A     return this-%3Ename;%0A   %7D%0A%0A   int getMoney()%7B%0A     return this-%3Emoney;%0A\n+ void setMotorista(std::shared_ptr%3CPessoa%3E motorista) %7B%0A        if (this-%3Emotorista != nullptr) %7B%0A            std::cout %3C%3C %22fail: Driver is already set%5Cn%22;%0A            return;%0A        %7D%0A        this-%3Emotorista = motorista;%0A    %7D%0A%0A    void setPassageiro(std::shared_ptr%3CPessoa%3E passageiro) %7B%0A        if (this-%3Emotorista == nullptr) %7B%0A            std::cout %3C%3C %22fail: No driver, no passenger%5Cn%22;%0A            return;%0A        %7D%0A        if (this-%3Epassageiro != nullptr) %7B%0A            std::cout %3C%3C %22fail: Passenger is already set%5Cn%22;%0A            return;%0A        %7D%0A        this-%3Epassageiro = passageiro;%0A        this-%3Ecusto = 0;%0A    %7D%0A%0A    void drive(int distance) %7B%0A        if (this-%3Emotorista == nullptr %7C%7C this-%3Epassageiro == nullptr) %7B%0A            std::cout %3C%3C %22fail: Missing driver or passenger%5Cn%22;%0A            return;%0A        %7D%0A        this-%3Ecusto += distance;%0A    %7D%0A%0A    void leavePass() %7B%0A        if (this-%3Epassageiro == nullptr) %7B%0A            std::cout %3C%3C %22fail: No passenger to leave%5Cn%22;%0A            return;%0A        %7D%0A        int pagamento = this-%3Ecusto;%0A        passageiro-%3Epagar(pagamento);%0A        motorista-%3Ereceber(pagamento);%0A        std::cout %3C%3C passageiro-%3EgetNome() %3C%3C %22:%22 %3C%3C passageiro-%3EgetDinheiro() %3C%3C %22 leave%22 %3C%3C std::endl;%0A        this-%3Epassageiro = nullptr;%0A        this-%3Ecusto = 0;%0A \n    %7D%0A\n+%0A \n    s\n@@ -2236,76 +2236,392 @@\n onst\n+ \n %7B%0A     \n-return fn::format(%22%7B%7D:%7B%7D%22, this-%3Ename, this-%3Emoney);%0A\n+   std::string motoristaStr = motorista ? motorista-%3Estr() : %22None%22;%0A        std::string passageiroStr = passageiro ? passageiro-%3Estr() : %22None%22;%0A        return fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, custo, motoristaStr, passageiroStr);%0A    %7D%0A%0A    void show() const %7B%0A        std::cout %3C%3C this-%3Estr(); // Removendo o std::endl para evitar nova linha extra%0A \n    %7D%0A%7D;%0A\n clas\n@@ -2616,16 +2616,17 @@\n    %7D%0A%7D;%0A\n+%0A\n class Ad\n@@ -2637,22 +2637,32 @@\n r %7B%0A\n-    Uber uber;\n+private:%0A    Moto moto;%0A\n %0Apub\n@@ -2681,24 +2681,30 @@\n d setDriver(\n+const \n std::string \n@@ -2694,32 +2694,33 @@\n onst std::string\n+&\n  name, int money\n@@ -2735,22 +2735,25 @@\n     \n-uber.setDriver\n+moto.setMotorista\n (std\n@@ -2760,36 +2760,36 @@\n ::make_shared%3CPe\n-rson\n+ssoa\n %3E(name, money));\n@@ -2787,32 +2787,33 @@\n  money));%0A    %7D%0A\n+%0A\n     void setPass\n@@ -2809,24 +2809,30 @@\n oid setPass(\n+const \n std::string \n@@ -2830,16 +2830,17 @@\n ::string\n+&\n  name, i\n@@ -2863,20 +2863,20 @@\n     \n-uber\n+moto\n .setPass\n (std\n@@ -2871,16 +2871,22 @@\n .setPass\n+ageiro\n (std::ma\n@@ -2901,12 +2901,12 @@\n d%3CPe\n-rson\n+ssoa\n %3E(na\n@@ -2916,32 +2916,33 @@\n  money));%0A    %7D%0A\n+%0A\n     void drive(i\n@@ -2968,23 +2968,27 @@\n     \n-(void) \n+moto.drive(\n distance\n ;%0A  \n@@ -2983,24 +2983,25 @@\n distance\n+)\n ;%0A    %7D%0A\n     void\n@@ -2988,24 +2988,25 @@\n nce);%0A    %7D%0A\n+%0A\n     void lea\n@@ -3016,22 +3016,49 @@\n ass() %7B%0A\n+        moto.leavePass();%0A\n     %7D%0A\n+%0A\n     void\n@@ -3075,90 +3075,265 @@\n     \n-%7D%0A%7D;%0A%0Aint main() %7B%0A    Adapter adp;%0A    while (true) %7B%0A        fn::write(%22$%22, %22%22);\n+    moto.show();%0A        std::cout %3C%3C std::endl;  // Garantindo que haja uma nova linha ap%C3%B3s a sa%C3%ADda do show%0A    %7D%0A%7D;%0A%0Aint main() %7B%0A    Adapter adp;%0A    while (true) %7B%0A        std::cout %3C%3C %22$%22;  // Garantindo que o prompt $ apare%C3%A7a no in%C3%ADcio de cada comando\n %0A   \n@@ -3407,33 +3407,8 @@\n  ');\n-%0A        fn::write(line);\n %0A%0A  \n@@ -3416,21 +3416,16 @@\n      if \n-     \n (args%5B0%5D\n@@ -3439,44 +3439,105 @@\n d%22) \n-      %7B break;                      \n+%7B%0A            std::cout %3C%3C %22end%22 %3C%3C std::endl;  // Garantindo que $end seja exibido corretamente%0A\n     \n@@ -3540,33 +3540,38 @@\n             \n-%7D\n+break;\n %0A       \n  else if (ar\n@@ -3550,32 +3550,34 @@\n   break;%0A       \n+ %7D\n  else if (args%5B0\n@@ -3591,24 +3591,36 @@\n etDriver%22) %7B\n+%0A           \n  adp.setDriv\n@@ -3627,33 +3627,42 @@\n er(args%5B1%5D, \n-+\n+std::stoi(\n args%5B2%5D)\n ;       %7D%0A  \n@@ -3653,25 +3653,18 @@\n %5B2%5D)\n+)\n ;\n-       %7D\n %0A       \n  els\n@@ -3651,32 +3651,34 @@\n gs%5B2%5D));%0A       \n+ %7D\n  else if (args%5B0\n@@ -3693,19 +3693,29 @@\n tPass%22) \n+%7B%0A         \n   \n-%7B\n  adp.set\n@@ -3732,17 +3732,26 @@\n 1%5D, \n-+\n+std::stoi(\n args%5B2%5D)\n ;   \n@@ -3746,18 +3746,19 @@\n args%5B2%5D)\n-; \n+);%0A\n         \n@@ -3754,32 +3754,24 @@\n );%0A        %7D\n-%0A       \n  else if (ar\n@@ -3792,63 +3792,62 @@\n e%22) \n-    %7B adp.drive(+args%5B1%5D);                    %7D%0A       \n+%7B%0A            adp.drive(std::stoi(args%5B1%5D));%0A        %7D\n  els\n@@ -3877,16 +3877,28 @@\n Pass%22) %7B\n+%0A           \n  adp.lea\n@@ -3906,32 +3906,17 @@\n ePass();\n-                \n+%0A\n         \n@@ -3912,32 +3912,24 @@\n );%0A        %7D\n-%0A       \n  else if (ar\n@@ -3949,43 +3949,107 @@\n w%22) \n+%7B%0A\n      \n-%7B adp.show();                 \n+       std::cout %3C%3C %22show%22 %3C%3C std::endl;  // Garantindo que $show seja exibido corretamente%0A\n     \n@@ -4056,25 +4056,35 @@\n         \n-%7D\n+adp.show();\n %0A       \n  else   \n@@ -4079,17 +4079,18 @@\n     \n+ %7D\n  else \n-   \n+%7B%0A\n     \n@@ -4100,23 +4100,8 @@\n     \n-              %7B\n  fn:\n@@ -4136,16 +4136,24 @@\n und%5Cn%22);\n+%0A       \n  %7D%0A    %7D\n@@ -4149,13 +4149,28 @@\n     %7D%0A    %7D%0A\n-%7D\n+    return 0;%0A%7D%0A\n"
+        },
+        {
+            "label": "2024-12-12_11-32-20",
+            "content": "@@ -396,478 +396,8 @@\n %7D%0A%7D;\n-%0A%0Aclass Uber%7B%0A    private:%0A        int custo%7B0%7D;%0A        std::shared_ptr%3CPerson%3E motorista%7Bnullptr%7D;%0A        std::shared_ptr%3CPerson%3E passageiro%7Bnullptr%7D;%0A%0A    public:%0A        Uber(): custo(0) , motorista(nullptr), passageiro(nullptr)%7B%7D%0A%0A     void setDriver(std::shared_ptr%3CPerson%3E motorista) %7B%0A        if (this-%3Emotorista != nullptr) %7B%0A            std::cout %3C%3C %22fail: Driver is already set%5Cn%22;%0A            return;%0A        %7D%0A        this-%3Emotorista = motorista;%0A    %7D%0A%0A%7D;\n %0Acla\n"
+        },
+        {
+            "label": "2024-12-12_11-36-15",
+            "content": "@@ -862,282 +862,8 @@\n    %7D\n-%0A     void setPass(std::shared_ptr%3CPerson%3E passageiro)%7B%0A        if (this-%3Emotorista == nullptr) %7B%0A            std::cout %3C%3C %22fail: Driver is already set%5Cn%22;%0A            return;%0A        %7D%0A        this-%3Epassageiro = passageiro;%0A        return %22Passafeiro subiu na moto%22;%0A     %7D\n %0A%0A%7D;\n"
+        },
+        {
+            "label": "2024-12-12_11-39-52",
+            "content": "@@ -917,24 +917,25 @@\n ro)%7B%0A       \n+ \n if (this-%3Emo\n@@ -992,31 +992,29 @@\n il: \n-No d\n+D\n river\n-, no passenger\n+ is already set\n %5Cn%22;\n@@ -1048,28 +1048,24 @@\n   %7D%0A        \n-if (\n this-%3Epassag\n@@ -1073,106 +1073,65 @@\n iro \n-!\n = \n-nullptr) %7B%0A            std::cout %3C%3C %22fail: Passenger is already set%5Cn%22;%0A            return;%0A   \n+passageiro;%0A        return %22Passafeiro subiu na moto%22;%0A\n     \n"
+        },
+        {
+            "label": "2024-12-12_11-40-32",
+            "content": "@@ -1183,15 +1183,8 @@\n   %7D%0A\n-     %7D;\n %0A%7D;%0A\n"
+        },
+        {
+            "label": "2024-12-12_11-41-25",
+            "content": "@@ -1183,47 +1183,8 @@\n   %7D%0A\n-        this-%3Epassageiro = passageiro;%0A\n     \n"
+        },
+        {
+            "label": "2024-12-12_11-44-25",
+            "content": "@@ -1229,322 +1229,8 @@\n   %7D;\n-%0A%0A            std::string str() const %7B%0A            std::string motoristaStr = motorista ? motorista-%3Estr() : %22None%22;%0A            std::string passageiroStr = passageiro ? passageiro-%3Estr() : %22None%22;%0A            return fn::format(%22Cost: %7B%7D, Driver: %7B%7D, Passenger: %7B%7D%22, money, motoristaStr, passageiroStr);%0A        %7D\n %0A%7D;%0A\n"
+        },
+        {
+            "label": "2024-12-12_11-45-23",
+            "content": "@@ -431,21 +431,21 @@\n     int \n-money\n+custo\n %7B0%7D;%0A   \n"
+        },
+        {
+            "label": "2024-12-12_11-45-39",
+            "content": "@@ -575,21 +575,21 @@\n Uber(): \n-money\n+custo\n (0) , mo\n"
+        },
+        {
+            "label": "2024-12-12_11-46-00",
+            "content": "@@ -1909,115 +1909,27 @@\n     \n-    std::cout %3C%3C moto.leavePass();%0A    %7D%0A    void show() %7B%0A          std::cout %3C%3C uber.str() %3C%3C std::endl;%0A\n+%7D%0A    void show() %7B\n %0A   \n"
+        },
+        {
+            "label": "2024-12-12_11-49-34",
+            "content": "@@ -1922,20 +1922,20 @@\n cout %3C%3C \n-uber\n+moto\n .leavePa\n"
+        },
+        {
+            "label": "2024-12-12_11-49-42",
+            "content": "@@ -1909,18 +1909,16 @@\n         \n-//\n std::cou\n"
+        },
+        {
+            "label": "2024-12-12_11-49-52",
+            "content": "@@ -1227,270 +1227,11 @@\n     \n-       %0A        void drive(int distance)%7B%0A            if (this-%3Emotorista == nullptr %7C%7C this-%3Epassageiro == nullptr) %7B%0A            std::cout %3C%3C %22fail: Missing driver or passenger%5Cn%22;%0A            return;%0A        %7D%0A        this-%3Emoney += distance;%0A    %7D%0A%0A        %7D\n+%7D;%0A\n %0A   \n@@ -1540,25 +1540,19 @@\n       %7D%0A\n-     \n %7D;%0A\n-%0A\n class Ad\n"
+        },
+        {
+            "label": "2024-12-12_11-52-24",
+            "content": "@@ -1223,17 +1223,18 @@\n o;%0A     \n-%7D\n+  \n      %0A  \n@@ -1450,16 +1450,21 @@\n   this-%3E\n+money\n  += dist\n"
+        },
+        {
+            "label": "2024-12-12_11-53-48",
+            "content": "@@ -1223,23 +1223,272 @@\n o;%0A     \n-       \n+%7D     %0A        void drive(int distance)%7B%0A            if (this-%3Emotorista == nullptr %7C%7C this-%3Epassageiro == nullptr) %7B%0A            std::cout %3C%3C %22fail: Missing driver or passenger%5Cn%22;%0A            return;%0A        %7D%0A        this-%3E += distance;%0A    %7D%0A%0A        %7D\n %0A       \n"
+        },
+        {
+            "label": "2024-12-12_11-54-15",
+            "content": "@@ -1554,18 +1554,10 @@\n    %7D\n-%0A%0A     %0A%7D\n ;\n+%0A\n %0Acla\n"
+        },
+        {
+            "label": "2024-12-12_11-55-08",
+            "content": "@@ -1550,17 +1550,16 @@\n %7D%0A     %7D\n-;\n %0A%0A     %0A\n"
+        },
+        {
+            "label": "2024-12-12_11-55-34",
+            "content": "@@ -1218,22 +1218,16 @@\n ageiro;%0A\n-     %7D\n         \n@@ -1540,24 +1540,29 @@\n ;%0A        %7D%0A\n+     \n %7D;%0A%0A     %0Acl\n@@ -1559,16 +1559,19 @@\n %0A%0A     %0A\n+%7D;%0A\n class Ad\n"
+        },
+        {
+            "label": "2024-12-12_11-57-34",
+            "content": "@@ -1227,257 +1227,11 @@\n     \n+%7D\n   \n- %7D%0A     void drive(int distance)%7B%0A         if (this-%3Emotorista == nullptr %7C%7C this-%3Epassageiro == nullptr) %7B%0A            std::cout %3C%3C %22fail: Missing driver or passenger%5Cn%22;%0A            return;%0A        %7D%0A        this-%3Emoney += distance;%0A    %7D%0A     %7D\n     \n"
+        },
+        {
+            "label": "2024-12-12_11-59-08",
+            "content": "@@ -2122,27 +2122,23 @@\n     \n-uber.drive(\n+(void) \n distance\n );%0A \n@@ -2133,17 +2133,16 @@\n distance\n-)\n ;%0A    %7D%0A\n"
+        },
+        {
+            "label": "2024-12-12_12-00-03",
+            "content": "@@ -1465,16 +1465,27 @@\n e;%0A    %7D\n+%0A     %7D    \n       %0A \n"
+        },
+        {
+            "label": "2024-12-12_12-00-24",
+            "content": "@@ -1218,20 +1218,26 @@\n ageiro;%0A\n+      \n   %7D%0A\n-\n      voi\n@@ -1460,16 +1460,16 @@\n stance;%0A\n+\n     %7D   \n@@ -1475,448 +1475,8 @@\n     \n-%0A%0A      void leavePass() %7B%0A        if (this-%3Epassageiro == nullptr) %7B%0A            std::cout %3C%3C %22fail: No passenger to leave%5Cn%22;%0A            return;%0A        %7D%0A        int pagamento = this-%3Emoney;%0A        passageiro-%3Epagar(pagamento);%0A        motorista-%3Ereceber(pagamento);%0A        std::cout %3C%3C passageiro-%3EgetName() %3C%3C %22:%22 %3C%3C passageiro-%3EgetMoney() %3C%3C %22 leave%22 %3C%3C std::endl;%0A        this-%3Epassageiro = nullptr;%0A        this-%3Emoney = 0;%0A    %7D\n %0A   \n"
+        },
+        {
+            "label": "2024-12-12_12-02-31",
+            "content": "@@ -1680,21 +1680,21 @@\n ageiro-%3E\n-money\n+pagar\n (pagamen\n@@ -1717,21 +1717,23 @@\n orista-%3E\n-money\n+receber\n (pagamen\n"
+        },
+        {
+            "label": "2024-12-12_12-03-52",
+            "content": "@@ -1653,21 +1653,21 @@\n = this-%3E\n-custo\n+money\n ;%0A      \n@@ -1684,13 +1684,13 @@\n ro-%3E\n-pagar\n+money\n (pag\n@@ -1721,15 +1721,13 @@\n ta-%3E\n-receber\n+money\n (pag\n@@ -1772,17 +1772,17 @@\n ro-%3EgetN\n-o\n+a\n me() %3C%3C \n@@ -1807,16 +1807,13 @@\n %3Eget\n-Dinheiro\n+Money\n () %3C\n@@ -1891,13 +1891,13 @@\n is-%3E\n-custo\n+money\n  = 0\n"
+        },
+        {
+            "label": "2024-12-12_12-04-04",
+            "content": "@@ -1805,21 +1805,24 @@\n iro-%3Eget\n-Money\n+Dinheiro\n () %3C%3C %22 \n"
+        },
+        {
+            "label": "2024-12-12_12-04-14",
+            "content": "@@ -1770,25 +1770,25 @@\n ageiro-%3EgetN\n-a\n+o\n me() %3C%3C %22:%22 \n"
+        },
+        {
+            "label": "2024-12-12_12-04-23",
+            "content": "@@ -2592,32 +2592,34 @@\n ass() %7B%0A        \n+//\n std::cout %3C%3C ube\n"
+        },
+        {
+            "label": "2024-12-12_12-05-49",
+            "content": "@@ -1889,21 +1889,21 @@\n   this-%3E\n-money\n+custo\n  = 0;%0A  \n"
+        },
+        {
+            "label": "2024-12-12_12-06-07",
+            "content": "@@ -2595,24 +2595,37 @@\n () %7B%0A       \n+ std::cout %3C%3C\n  uber.leaveP\n"
+        },
+        {
+            "label": "2024-12-12_12-07-33",
+            "content": "@@ -1649,29 +1649,29 @@\n nto = this-%3E\n-money\n+custo\n ;%0A        pa\n"
+        },
+        {
+            "label": "2024-12-12_12-09-00",
+            "content": "@@ -302,136 +302,8 @@\n    %7D\n-%0A%0A   void pagar(int amount) %7B %0A    this-%3Emoney -= amount; %0A   %7D %0A   void receber(int amount) %7B %0A    this-%3Emoney += amount; %0A   %7D\n %0A   \n"
+        },
+        {
+            "label": "2024-12-12_12-11-51",
+            "content": "@@ -314,29 +314,30 @@\n d pagar(int \n-valor\n+amount\n ) %7B %0A    thi\n@@ -348,21 +348,22 @@\n oney -= \n-valor\n+amount\n ; %0A   %7D \n@@ -383,21 +383,22 @@\n ber(int \n-valor\n+amount\n ) %7B %0A   \n@@ -417,13 +417,14 @@\n  += \n-valor\n+amount\n ; %0A \n"
+        },
+        {
+            "label": "2024-12-12_12-13-14",
+            "content": "@@ -1751,152 +1751,8 @@\n   %7D%0A\n-            if (passageiro-%3EgetDinheiro() %3C custo) %7B%0A                std::cout %3C%3C %22fail: Passenger does not have enough money%5Cn%22;%0A            %7D%0A\n     \n"
+        },
+        {
+            "label": "2024-12-12_12-14-52",
+            "content": "@@ -1791,21 +1791,21 @@\n iro() %3C \n-money\n+custo\n ) %7B%0A    \n"
+        },
+        {
+            "label": "2024-12-12_12-15-02",
+            "content": "@@ -1774,29 +1774,32 @@\n sageiro-%3Eget\n-Money\n+Dinheiro\n () %3C money) \n"
+        },
+        {
+            "label": "2024-12-12_12-15-17",
+            "content": "@@ -1750,24 +1750,29 @@\n    %7D%0A       \n+     \n if (passagei\n@@ -1883,81 +1883,8 @@\n     \n-   %7D%0A       if(passageiro-%3EgetMoney() %3C 0 )%7B%0A          return money = 0;%0A\n     \n@@ -1888,18 +1888,16 @@\n       %7D%0A\n-%0A%0A\n         \n@@ -2165,17 +2165,16 @@\n ey = 0;%0A\n-%0A\n     %7D%0A  \n"
+        },
+        {
+            "label": "2024-12-12_12-23-15",
+            "content": "@@ -1929,16 +1929,23 @@\n         \n+return \n money = \n"
+        },
+        {
+            "label": "2024-12-12_12-23-33",
+            "content": "@@ -302,18 +302,16 @@\n    %7D%0A%0A  \n- %7D\n  void pa\n@@ -330,81 +330,8 @@\n r) %7B\n-%0A     if (this-%3Emoney %3C valor) %7B%0A     this-%3Emoney = 0; %0A    %7D %0A    else %7B\n  %0A  \n@@ -353,23 +353,24 @@\n = valor;\n+ \n %0A   %7D\n-%0A\n  \n+%0A\n    void \n@@ -1882,16 +1882,82 @@\n    %7D%0A   \n+    if(passageiro-%3EgetMoney() %3C 0 )%7B%0A          money = 0;%0A       %7D\n %0A%0A%0A     \n"
+        },
+        {
+            "label": "2024-12-12_12-26-24",
+            "content": "@@ -390,16 +390,21 @@\n  %0A    %7D \n+%0A    \n else %7B %0A\n"
+        },
+        {
+            "label": "2024-12-12_12-28-11",
+            "content": "@@ -302,16 +302,18 @@\n    %7D%0A%0A  \n+ %7D\n  void pa\n@@ -320,32 +320,100 @@\n gar(int valor) %7B\n+%0A     if (this-%3Emoney %3C valor) %7B%0A     this-%3Emoney = 0; %0A    %7D else %7B\n  %0A    this-%3Emone\n@@ -427,16 +427,15 @@\n lor;\n- \n %0A   %7D\n- \n %0A\n+ \n    v\n"
+        },
+        {
+            "label": "2024-12-12_12-30-33",
+            "content": "@@ -299,25 +299,24 @@\n y;%0A   %7D%0A%0A   \n- \n void pagar(i\n@@ -330,18 +330,14 @@\n r) %7B\n+ \n %0A    \n- if (\n this\n@@ -348,79 +348,24 @@\n ney \n-%3C\n+-=\n  valor\n-) %0A     this-%3Emoney = 0\n ; %0A   \n-  else %0A     this-%3Emoney -= valor;%0A\n+%7D \n %0A   \n"
+        },
+        {
+            "label": "2024-12-12_12-31-44",
+            "content": "@@ -420,21 +420,16 @@\n  valor;%0A\n-    %7D\n %0A   void\n"
+        },
+        {
+            "label": "2024-12-12_12-31-53",
+            "content": "#define __MEMORY //enable print for shared_ptr\n#include \"fn.hpp\"\n\nclass Person{\nprivate:\n   std::string name;\n   int money;\npublic:\n   Person(std::string name, int money): name(name), money(money) {}\n\n   std::string getName(){\n     return this->name;\n   }\n\n   int getMoney(){\n     return this->money;\n   }\n\n    void pagar(int valor) {\n     if (this->money < valor) \n     this->money = 0; \n     else \n     this->money -= valor;\n    }\n   void receber(int valor) { \n    this->money += valor; \n   }\n   std::string str() const{\n     return fn::format(\"{}:{}\", this->name, this->money);\n   }\n};\n\nclass Uber{\n    private:\n        int money{0};\n        std::shared_ptr<Person> motorista{nullptr};\n        std::shared_ptr<Person> passageiro{nullptr};\n\n    public:\n        Uber(): money(0) , motorista(nullptr), passageiro(nullptr){}\n\n     void setDriver(std::shared_ptr<Person> motorista) {\n        if (this->motorista != nullptr) {\n            std::cout << \"fail: Driver is already set\\n\";\n            return;\n        }\n        this->motorista = motorista;\n    }\n     void setPass(std::shared_ptr<Person> passageiro){\n       if (this->motorista == nullptr) {\n            std::cout << \"fail: No driver, no passenger\\n\";\n            return;\n        }\n        if (this->passageiro != nullptr) {\n            std::cout << \"fail: Passenger is already set\\n\";\n            return;\n        }\n        this->passageiro = passageiro;\n  }\n     void drive(int distance){\n         if (this->motorista == nullptr || this->passageiro == nullptr) {\n            std::cout << \"fail: Missing driver or passenger\\n\";\n            return;\n        }\n        this->money += distance;\n    }      \n\n      void leavePass() {\n        if (this->passageiro == nullptr) {\n            std::cout << \"fail: No passenger to leave\\n\";\n            return;\n        }\n       if (passageiro->getMoney() < money) {\n                std::cout << \"fail: Passenger does not have enough money\\n\";\n        }\n   \n\n\n        int pagamento = this->money;\n        passageiro->pagar(pagamento);\n        motorista->receber(pagamento);\n        std::cout << passageiro->getName() << \":\" << passageiro->getMoney() << \" leave\" << std::endl;\n        this->passageiro = nullptr;\n        this->money = 0;\n\n    }\n            std::string str() const {\n            std::string motoristaStr = motorista ? motorista->str() : \"None\";\n            std::string passageiroStr = passageiro ? passageiro->str() : \"None\";\n            return fn::format(\"Cost: {}, Driver: {}, Passenger: {}\", money, motoristaStr, passageiroStr);\n        }\n};\n\n     \nclass Adapter {\n    Uber uber;\npublic:\n    void setDriver(std::string name, int money) {\n        uber.setDriver(std::make_shared<Person>(name, money));\n    }\n    void setPass(std::string name, int money) {\n        uber.setPass(std::make_shared<Person>(name, money));\n    }\n    void drive(int distance) {\n        uber.drive(distance);\n    }\n    void leavePass() {\n        uber.leavePass();\n    }\n    void show() {\n          std::cout << uber.str() << std::endl;\n\n    }\n};\n\nint main() {\n    Adapter adp;\n    while (true) {\n        fn::write(\"$\", \"\");\n        auto line = fn::input();\n        auto args = fn::split(line, ' ');\n        fn::write(line);\n\n        if      (args[0] == \"end\")       { break;                                  }\n        else if (args[0] == \"setDriver\") { adp.setDriver(args[1], +args[2]);       }\n        else if (args[0] == \"setPass\")   { adp.setPass(args[1], +args[2]);         }\n        else if (args[0] == \"drive\")     { adp.drive(+args[1]);                    }\n        else if (args[0] == \"leavePass\") { adp.leavePass();                        }\n        else if (args[0] == \"show\")      { adp.show();                             }\n        else                             { fn::write(\"fail: command not found\\n\"); }\n    }\n}"
+        }
+    ]
+}
